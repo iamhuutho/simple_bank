@@ -7,7 +7,7 @@ services:
       - POSTGRES_PASSWORD=secret
       - POSTGRES_DB=simple_bank
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - data-volume:/var/lib/postgresql/data
   redis:
@@ -20,7 +20,7 @@ services:
       - "8080:8080"
       - "9090:9090"
     environment:
-      - DB_SOURCE=postgresql://root:secret@postgres:5432/simple_bank?sslmode=disable
+      - DB_SOURCE=postgresql://root:secret@postgres:5433/simple_bank?sslmode=disable
       - REDIS_ADDRESS=redis:6379
     depends_on:
       - postgres
@@ -28,7 +28,7 @@ services:
     entrypoint:
       [
         "/app/wait-for.sh",
-        "postgres:5432",
+        "postgres:5433",
         "--",
         "/app/start.sh"
       ]
