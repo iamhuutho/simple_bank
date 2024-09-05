@@ -11,14 +11,14 @@ import (
 )
 
 func createRandomUser(t *testing.T) User {
-	hashedPassword, err := util.HashPassword(util.RandomString(6))
+	hashedPassword, err := utils.HashPassword(utils.RandomString(6))
 	require.NoError(t, err)
 
 	arg := CreateUserParams{
-		Username:       util.RandomOwner(),
+		Username:       utils.RandomOwner(),
 		HashedPassword: hashedPassword,
-		FullName:       util.RandomOwner(),
-		Email:          util.RandomEmail(),
+		FullName:       utils.RandomOwner(),
+		Email:          utils.RandomEmail(),
 	}
 
 	user, err := testStore.CreateUser(context.Background(), arg)
@@ -56,7 +56,7 @@ func TestGetUser(t *testing.T) {
 func TestUpdateUserOnlyFullName(t *testing.T) {
 	oldUser := createRandomUser(t)
 
-	newFullName := util.RandomOwner()
+	newFullName := utils.RandomOwner()
 	updatedUser, err := testStore.UpdateUser(context.Background(), UpdateUserParams{
 		Username: oldUser.Username,
 		FullName: pgtype.Text{
@@ -75,7 +75,7 @@ func TestUpdateUserOnlyFullName(t *testing.T) {
 func TestUpdateUserOnlyEmail(t *testing.T) {
 	oldUser := createRandomUser(t)
 
-	newEmail := util.RandomEmail()
+	newEmail := utils.RandomEmail()
 	updatedUser, err := testStore.UpdateUser(context.Background(), UpdateUserParams{
 		Username: oldUser.Username,
 		Email: pgtype.Text{
@@ -94,8 +94,8 @@ func TestUpdateUserOnlyEmail(t *testing.T) {
 func TestUpdateUserOnlyPassword(t *testing.T) {
 	oldUser := createRandomUser(t)
 
-	newPassword := util.RandomString(6)
-	newHashedPassword, err := util.HashPassword(newPassword)
+	newPassword := utils.RandomString(6)
+	newHashedPassword, err := utils.HashPassword(newPassword)
 	require.NoError(t, err)
 
 	updatedUser, err := testStore.UpdateUser(context.Background(), UpdateUserParams{
@@ -116,10 +116,10 @@ func TestUpdateUserOnlyPassword(t *testing.T) {
 func TestUpdateUserAllFields(t *testing.T) {
 	oldUser := createRandomUser(t)
 
-	newFullName := util.RandomOwner()
-	newEmail := util.RandomEmail()
-	newPassword := util.RandomString(6)
-	newHashedPassword, err := util.HashPassword(newPassword)
+	newFullName := utils.RandomOwner()
+	newEmail := utils.RandomEmail()
+	newPassword := utils.RandomString(6)
+	newHashedPassword, err := utils.HashPassword(newPassword)
 	require.NoError(t, err)
 
 	updatedUser, err := testStore.UpdateUser(context.Background(), UpdateUserParams{

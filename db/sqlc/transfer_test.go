@@ -13,7 +13,7 @@ func createRandomTransfer(t *testing.T, account1, account2 Account) Transfer {
 	arg := CreateTransferParams{
 		FromAccountID: account1.ID,
 		ToAccountID:   account2.ID,
-		Amount:        util.RandomMoney(),
+		Amount:        utils.RandomMoney(),
 	}
 
 	transfer, err := testStore.CreateTransfer(context.Background(), arg)
