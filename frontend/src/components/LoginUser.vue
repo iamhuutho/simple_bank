@@ -53,7 +53,7 @@ const handleLogin = async () => {
 
     toast.add({
       severity: 'error',
-      summary: 'Login failed',
+      summary: 'Login fail',
       detail: errorMessage.value,
       life: 3000
     })
