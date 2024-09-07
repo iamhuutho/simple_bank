@@ -24,7 +24,7 @@ const toast = useToast()
 const handleLogin = async () => {
   try {
     const response = await axios.post<LoginResponse>(
-      'http://localhost:8080/v1/login_user',
+      'http://localhost:8081/v1/login_user',
       {
         username: username.value,
         password: password.value
@@ -53,7 +53,7 @@ const handleLogin = async () => {
 
     toast.add({
       severity: 'error',
-      summary: 'Login failed',
+      summary: 'Login fail',
       detail: errorMessage.value,
       life: 3000
     })
