@@ -19,7 +19,7 @@ spec:
         image: 760486049168.dkr.ecr.us-east-1.amazonaws.com/simplebank:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080
+        - containerPort: 8081
           name: http-server
         - containerPort: 9090
           name: grpc-server

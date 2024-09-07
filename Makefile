@@ -30,6 +30,9 @@ migratedown1:
 new_migration:
 	migrate create -ext sql -dir db/migration -seq $(name)
 
+revert_migration:
+	migrate -path db/migration -database "$(DB_URL)" -verbose down 1
+
 db_docs:
 	dbdocs build doc/db.dbml
 
